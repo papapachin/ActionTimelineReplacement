@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33103.201
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionTimelineReplacement", "ActionTimelineReplacement.csproj", "{56E90167-0896-44DA-B621-A647367D8B63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56E90167-0896-44DA-B621-A647367D8B63}.Debug|x64.ActiveCfg = Debug|x64
+		{56E90167-0896-44DA-B621-A647367D8B63}.Debug|x64.Build.0 = Debug|x64
+		{56E90167-0896-44DA-B621-A647367D8B63}.Release|x64.ActiveCfg = Release|x64
+		{56E90167-0896-44DA-B621-A647367D8B63}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45A8A7A3-4B20-4BEB-AFC9-F9D5E0E3D564}
+	EndGlobalSection
+EndGlobal
