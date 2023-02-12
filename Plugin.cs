@@ -49,7 +49,12 @@ namespace ActionTimelineReplacement
                         var animationEnd = ActionTimelines.GetRow((uint)config.Value.AnimationEnd);
                         var actionTimelineHit = ActionTimelines.GetRow((uint)config.Value.ActionTimelineHit);
                         PluginLog.Log($"Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
-                        this.ActionTimelineReplacements.Add(config.Key, config.Value);
+                        if (this.ActionTimelineReplacements.TryAdd(config.Key, config.Value)) {
+                            PluginLog.Log($"Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
+                        }
+                        else {
+                            PluginLog.Log($"FAIL:Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
+                        }
                     }
             }
             GetActionDataHook?.Enable();
