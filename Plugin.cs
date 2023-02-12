@@ -22,7 +22,7 @@ namespace ActionTimelineReplacement
         public string Name => "ActionTimelineReplacement";
 
         private SortedDictionary<int, ActionTimelineReplacement> ActionTimelineReplacements = new();
-        public unsafe Plugin(
+        public Plugin(
             [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
         {
             pluginInterface.Create<Service>();
@@ -45,9 +45,9 @@ namespace ActionTimelineReplacement
                 if (configs is not null)
                     foreach (var config in configs)
                     {
-                        var action = Actions.GetRow((uint)config.Key);
-                        var animationEnd = ActionTimelines.GetRow((uint)config.Value.AnimationEnd);
-                        var actionTimelineHit = ActionTimelines.GetRow((uint)config.Value.ActionTimelineHit);
+                        var action = Actions?.GetRow((uint)config.Key);
+                        var animationEnd = ActionTimelines?.GetRow((uint)config.Value.AnimationEnd);
+                        var actionTimelineHit = ActionTimelines?.GetRow((uint)config.Value.ActionTimelineHit);
                         PluginLog.Log($"Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
                         if (this.ActionTimelineReplacements.TryAdd(config.Key, config.Value)) {
                             PluginLog.Log($"Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
