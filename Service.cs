@@ -5,6 +5,7 @@ using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,21 +21,24 @@ namespace SocialList
         internal static DalamudPluginInterface PluginInterface { get; set; }
         [PluginService]
         [RequiredVersion("1.0")]
-        internal static SigScanner Scanner { get; set; }
+        internal static ISigScanner Scanner { get; set; }
         [PluginService]
         [RequiredVersion("1.0")]
-        internal static CommandManager CommandManager { get; set; }
+        internal static ICommandManager CommandManager { get; set; }
         [PluginService]
         [RequiredVersion("1.0")]
-        internal static ClientState ClientState { get; set; }
+        internal static IClientState ClientState { get; set; }
         [PluginService]
         [RequiredVersion("1.0")]
-        internal static ChatGui ChatGui { get; set; }
+        internal static IChatGui ChatGui { get; set; }
         [PluginService]
         [RequiredVersion("1.0")]
-        internal static DataManager DataManager { get; set; }
+        internal static IDataManager DataManager { get; set; }
         [PluginService]
         [RequiredVersion("1.0")]
-        internal static Framework Framework { get; set; }
+        internal static IGameInteropProvider GameInteropProvider { get; set; }
+        [PluginService]
+        [RequiredVersion("1.0")]
+        internal static IFramework Framework { get; set; }
     }
 }

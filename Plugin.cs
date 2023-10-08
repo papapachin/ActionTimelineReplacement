@@ -2,6 +2,7 @@ using Dalamud.Hooking;
 using Dalamud.IoC;
 using Dalamud.Logging;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 using Dalamud.Utility.Signatures;
 using Newtonsoft.Json;
 using SocialList;
@@ -26,7 +27,7 @@ namespace ActionTimelineReplacement
             [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
         {
             pluginInterface.Create<Service>();
-            SignatureHelper.Initialise(this, true);
+            Service.GameInteropProvider.InitializeFromAttributes(this);
             var configDirPath = Path.Combine(pluginInterface.AssemblyLocation.DirectoryName, "Presets");
             if (!Directory.Exists(configDirPath))
             {
@@ -62,9 +63,11 @@ namespace ActionTimelineReplacement
                 }
             }
             GetActionDataHook?.Enable();
+            PluginLog.Information($"GetActionDataHook is null: {GetActionDataHook == null}");
         }
 
         private delegate IntPtr GetActionDataDelegate(uint actionId);
+
         [Signature("E8 ?? ?? ?? ?? 80 FB 12", DetourName = nameof(GetActionDataDetour))]
         private Hook<GetActionDataDelegate> GetActionDataHook;
         private unsafe IntPtr GetActionDataDetour(uint actionId)
