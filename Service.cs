@@ -17,28 +17,20 @@ namespace SocialList
     internal class Service
     {
         [PluginService]
-        [RequiredVersion("1.0")]
-        internal static DalamudPluginInterface PluginInterface { get; set; }
+        internal static IDalamudPluginInterface PluginInterface { get; set; }
         [PluginService]
-        [RequiredVersion("1.0")]
         internal static ISigScanner Scanner { get; set; }
         [PluginService]
-        [RequiredVersion("1.0")]
         internal static ICommandManager CommandManager { get; set; }
         [PluginService]
-        [RequiredVersion("1.0")]
         internal static IClientState ClientState { get; set; }
         [PluginService]
-        [RequiredVersion("1.0")]
         internal static IChatGui ChatGui { get; set; }
         [PluginService]
-        [RequiredVersion("1.0")]
         internal static IDataManager DataManager { get; set; }
         [PluginService]
-        [RequiredVersion("1.0")]
         internal static IGameInteropProvider GameInteropProvider { get; set; }
         [PluginService]
-        [RequiredVersion("1.0")]
         internal static IFramework Framework { get; set; }
     }
 }
