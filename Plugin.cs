@@ -1,3 +1,4 @@
+using Dalamud.Game;
 using Dalamud.Hooking;
 using Dalamud.IoC;
 using Dalamud.Logging;
@@ -21,14 +22,31 @@ namespace ActionTimelineReplacement
     public unsafe sealed class Plugin : IDalamudPlugin
     {
         public string Name => "ActionTimelineReplacement";
+        [PluginService]
+        internal static IDalamudPluginInterface PluginInterface { get; set; }
+        [PluginService]
+        internal static ISigScanner Scanner { get; set; }
+        [PluginService]
+        internal static ICommandManager CommandManager { get; set; }
+        [PluginService]
+        internal static IClientState ClientState { get; set; }
+        [PluginService]
+        internal static IChatGui ChatGui { get; set; }
+        [PluginService]
+        internal static IDataManager DataManager { get; set; }
+        [PluginService]
+        internal static IGameInteropProvider GameInteropProvider { get; set; }
+        [PluginService]
+        internal static IFramework Framework { get; set; }
+        [PluginService]
+        public static IPluginLog PluginLog { get; set; }
 
         private SortedDictionary<int, ActionTimelineReplacement> ActionTimelineReplacements = new();
-        public Plugin(
-            [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface)
+        public Plugin()
         {
-            pluginInterface.Create<Service>();
+            PluginInterface.Create<Service>();
             Service.GameInteropProvider.InitializeFromAttributes(this);
-            var configDirPath = Path.Combine(pluginInterface.AssemblyLocation.DirectoryName, "Presets");
+            var configDirPath = Path.Combine(PluginInterface.AssemblyLocation.DirectoryName, "Presets");
             if (!Directory.Exists(configDirPath))
             {
                 Directory.CreateDirectory(configDirPath);
@@ -42,7 +60,7 @@ namespace ActionTimelineReplacement
             foreach (var file in Directory.GetFiles(configDirPath, "*.json"))
             {
                 try {
-                    PluginLog.Log($"Loading ${file}");
+                    PluginLog.Info($"Loading ${file}");
                     var configs = JsonConvert.DeserializeObject<SortedDictionary<int, ActionTimelineReplacement>>(File.ReadAllText(file));
                     if (configs is not null)
                         foreach (var config in configs) {
@@ -50,10 +68,10 @@ namespace ActionTimelineReplacement
                             var animationEnd = ActionTimelines?.GetRow((uint)config.Value.AnimationEnd);
                             var actionTimelineHit = ActionTimelines?.GetRow((uint)config.Value.ActionTimelineHit);
                             if (this.ActionTimelineReplacements.TryAdd(config.Key, config.Value)) {
-                                PluginLog.Log($"Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
+                                PluginLog.Info($"Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
                             }
                             else {
-                                PluginLog.Log($"FAIL:Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
+                                PluginLog.Info($"FAIL:Action:{action?.Name}({config.Key}):AnimationEnd->{animationEnd?.Key}({config.Value.AnimationEnd}),ActionTimelineHit->{actionTimelineHit?.Key}({config.Value.ActionTimelineHit})");
                             }
                         }
                 }
