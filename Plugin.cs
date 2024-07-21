@@ -16,6 +16,7 @@ namespace ActionTimelineReplacement
 {
     public class ActionTimelineReplacement
     {
+        public int AnimationStart { get; set; }
         public int AnimationEnd { get; set; }
         public int ActionTimelineHit { get; set; }
     }
@@ -50,9 +51,9 @@ namespace ActionTimelineReplacement
             if (!Directory.Exists(configDirPath))
             {
                 Directory.CreateDirectory(configDirPath);
-                var example = new ActionTimelineReplacement() {AnimationEnd = 5146, ActionTimelineHit = 1875 };
-                ActionTimelineReplacements.Add(25757,example);
-                File.WriteAllText(Path.Combine(configDirPath,"example.json"),JsonConvert.SerializeObject(ActionTimelineReplacements));
+                var example = new ActionTimelineReplacement() { AnimationStart = 0, AnimationEnd = 8274, ActionTimelineHit = 1875 };
+                ActionTimelineReplacements.Add(25757, example);
+                File.WriteAllText(Path.Combine(configDirPath, "example.json"),JsonConvert.SerializeObject(ActionTimelineReplacements));
                 ActionTimelineReplacements.Clear();
             }
             var ActionTimelines = Service.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.ActionTimeline>();
@@ -93,8 +94,9 @@ namespace ActionTimelineReplacement
             if (this.ActionTimelineReplacements.TryGetValue((int)actionId, out var replacement))
             {
                 var ret = GetActionDataHook.Original(actionId);
+                Marshal.WriteInt16(ret + 0xC, (short)replacement.ActionTimelineHit);
                 Marshal.WriteInt16(ret + 0x1E, (short)replacement.AnimationEnd);
-                Marshal.WriteInt16(ret + 0x1C, (short)replacement.ActionTimelineHit);
+                Marshal.WriteInt16(ret + 0x22, (short)replacement.AnimationStart);
                 return ret;
             }
             return GetActionDataHook.Original(actionId);
