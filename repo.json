@@ -25,7 +25,7 @@
 		"Description": "A simple plugin to replace timelines of actions.",
 		"RepoUrl": "https://github.com/Loskh/ActionTimelineReplacement",
 		"InternalName": "ActionTimelineReplacement",
-		"AssemblyVersion": 0.0 .0 .2 ",
+		"AssemblyVersion": 0.0.0.2 ",
 		"TestingAssemblyVersion": "0.0.0.2",
 		"ApplicableVersion": "any",
 		"DalamudApiLevel": 9,
