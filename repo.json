@@ -5,17 +5,17 @@
 		"Description": "A simple plugin to replace timelines of actions.",
 		"RepoUrl": "https://github.com/Loskh/ActionTimelineReplacement",
 		"InternalName": "ActionTimelineReplacement",
-		"AssemblyVersion": "0.0.0.3",
-		"TestingAssemblyVersion": "0.0.0.3",
+		"AssemblyVersion": "0.0.0.4",
+		"TestingAssemblyVersion": "0.0.0.4",
 		"ApplicableVersion": "any",
-		"DalamudApiLevel": 10,
+		"DalamudApiLevel": 11,
 		"IsHide": "False",
 		"IsTestingExclusive": "False",
 		"DownloadCount": 0,
 		"LastUpdate": 0,
-		"DownloadLinkInstall": "https://github.com/Loskh/ActionTimelineReplacement/releases/download/0.0.0.3/latest.zip",
-		"DownloadLinkTesting": "https://github.com/Loskh/ActionTimelineReplacement/releases/download/0.0.0.3/latest.zip",
-		"DownloadLinkUpdate": "https://github.com/Loskh/ActionTimelineReplacement/releases/download/0.0.0.3/latest.zip",
+		"DownloadLinkInstall": "https://github.com/Loskh/ActionTimelineReplacement/releases/download/0.0.0.4/latest.zip",
+		"DownloadLinkTesting": "https://github.com/Loskh/ActionTimelineReplacement/releases/download/0.0.0.4/latest.zip",
+		"DownloadLinkUpdate": "https://github.com/Loskh/ActionTimelineReplacement/releases/download/0.0.0.4/latest.zip",
 		"IconUrl": null
 	}
 ]
