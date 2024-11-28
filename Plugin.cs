@@ -56,8 +56,8 @@ namespace ActionTimelineReplacement
                 File.WriteAllText(Path.Combine(configDirPath, "example.json"),JsonConvert.SerializeObject(ActionTimelineReplacements));
                 ActionTimelineReplacements.Clear();
             }
-            var ActionTimelines = Service.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.ActionTimeline>();
-            var Actions = Service.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.Action>();
+            var ActionTimelines = Service.DataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>();
+            var Actions = Service.DataManager.GetExcelSheet<Lumina.Excel.Sheets.Action>();
             foreach (var file in Directory.GetFiles(configDirPath, "*.json"))
             {
                 try {
