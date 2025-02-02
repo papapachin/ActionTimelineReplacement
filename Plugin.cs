@@ -51,9 +51,7 @@ namespace ActionTimelineReplacement
             if (!Directory.Exists(configDirPath))
             {
                 Directory.CreateDirectory(configDirPath);
-                var example = new ActionTimelineReplacement() { AnimationStart = 0, AnimationEnd = 8274, ActionTimelineHit = 1875 };
-                ActionTimelineReplacements.Add(25757, example);
-                File.WriteAllText(Path.Combine(configDirPath, "example.json"),JsonConvert.SerializeObject(ActionTimelineReplacements));
+
                 ActionTimelineReplacements.Clear();
             }
             var ActionTimelines = Service.DataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>();
