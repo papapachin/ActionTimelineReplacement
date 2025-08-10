@@ -11,7 +11,7 @@ using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Utility.Raii;
 using Dalamud.Interface.Windowing;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace ActionTimelineReplacement.Windows;
 
@@ -436,7 +436,7 @@ public sealed class ConfigWindow : Window
         try
         {
             var font = handle.Lock().ImFont;
-            if ((IntPtr)font.NativePtr == IntPtr.Zero)
+            if (font.IsNull)
             {
                 return ImGui.GetFont();
             }
