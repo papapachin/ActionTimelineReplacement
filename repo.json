@@ -1,22 +1,22 @@
 [
 	{
-		"Name": "ActionTimelineReplacement",
-		"Author": "Loskh,Papachin",
+		"Name": "ActionTimelineReplacement(aka. ATR)",
+		"Author": "Loskh,Papachin,DethiCra",
 		"Punchline": "A simple plugin to replace timelines of actions.",
 		"Description": "A simple plugin to replace timelines of actions.",
-		"RepoUrl": "https://github.com/Loskh/ActionTimelineReplacement",
+		"RepoUrl": "https://github.com/papapachin/ActionTimelineReplacement/tree/Global",
 		"InternalName": "ActionTimelineReplacement",
-		"AssemblyVersion": "0.0.0.6",
-		"TestingAssemblyVersion": "0.0.0.6",
+		"AssemblyVersion": "1.0.0.0",
+		"TestingAssemblyVersion": "1.0.0.0",
 		"ApplicableVersion": "any",
 		"DalamudApiLevel": 12,
 		"IsHide": "False",
 		"IsTestingExclusive": "False",
 		"DownloadCount": 0,
 		"LastUpdate": 0,
-		"DownloadLinkInstall": "https://github.com/papapachin/ActionTimelineReplacement/releases/download/0.0.0.6/latest.zip",
-		"DownloadLinkTesting": "https://github.com/papapachin/ActionTimelineReplacement/releases/download/0.0.0.6/latest.zip",
-		"DownloadLinkUpdate": "https://github.com/papapachin/ActionTimelineReplacement/releases/download/0.0.0.6/latest.zip",
+		"DownloadLinkInstall": "https://github.com/papapachin/ActionTimelineReplacement/releases/download/1.0.0.0/latest.zip",
+		"DownloadLinkTesting": "https://github.com/papapachin/ActionTimelineReplacement/releases/download/1.0.0.0/latest.zip",
+		"DownloadLinkUpdate": "https://github.com/papapachin/ActionTimelineReplacement/releases/download/1.0.0.0/latest.zip",
 		"IconUrl": "https://raw.githubusercontent.com/papapachin/ActionTimelineReplacement/Global/actiontimeline.png"
 	}
 ]

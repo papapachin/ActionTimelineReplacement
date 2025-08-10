@@ -1,9 +1,9 @@
 {
   "Name": "ActionTimelineReplacement",
-  "Author": "Loskh,Papachin",
+  "Author": "Loskh,Papachin,DethiCra",
   "Punchline": "A simple plugin to replace timelines of actions.",
   "Description": "A simple plugin to replace timelines of actions.",
-  "RepoUrl": "https://github.com/Loskh/ActionTimelineReplacement",
-  "Tags" : ["Action"],
+  "RepoUrl": "https://github.com/papapachin/ActionTimelineReplacement/tree/Global",
+  "Tags": ["Action"],
   "IconUrl": "https://raw.githubusercontent.com/papapachin/ActionTimelineReplacement/Global/actiontimeline.png"
 }
