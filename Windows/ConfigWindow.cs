@@ -118,7 +118,7 @@ public sealed class ConfigWindow : Window
                         _dialogManager.SaveFileDialog("Save", ".json", set.Name, ".json", (b, file) =>
                         {
                             if (!b) return;
-                            set.Save(file);
+                            set.Export(file);
                         });
                     }
 
@@ -158,7 +158,7 @@ public sealed class ConfigWindow : Window
                     if (!b) return;
                     foreach (var file in files)
                     {
-                        if (ActionTimelineReplacementSet.Load(file) is not { } set) continue;
+                        if (ActionTimelineReplacementSet.Import(file) is not { } set) continue;
                         Service.Config.ActionTimelineReplacements.Add(set);
                         Methods.SetupActions(set.Replacements.Keys);
                     }

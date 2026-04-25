@@ -22,7 +22,6 @@ public sealed class Plugin : IDalamudPlugin
         _disposables = [new WindowManager()];
 
         Methods.SetupActions(ReplacementsManager.AllActionIds);
-
     }
 
     public void Dispose()

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ActionTimelineReplacement.Hookers;
 using Newtonsoft.Json;
 
 namespace ActionTimelineReplacement.Configurations;
@@ -13,12 +12,11 @@ public class ActionTimelineReplacementSet(
     int priority)
 {
     public string Name = name;
-
-    public Dictionary<uint, ActionTimelineReplacementConfig> Replacements { get; } = replacements;
     public bool Enabled = enabled;
     public int Priority = priority;
+    public Dictionary<uint, ActionTimelineReplacementConfig> Replacements { get; } = replacements;
 
-    public static ActionTimelineReplacementSet? Load(string jsonFile)
+    public static ActionTimelineReplacementSet? Import(string jsonFile)
     {
         try
         {
@@ -40,7 +38,7 @@ public class ActionTimelineReplacementSet(
         }
     }
 
-    public bool Save(string jsonFile)
+    public bool Export(string jsonFile)
     {
         try
         {
@@ -55,30 +53,5 @@ public class ActionTimelineReplacementSet(
         {
             return false;
         }
-    }
-}
-
-public class ActionTimelineReplacementConfig(ActionTimelineReplacement replacement, bool enabled)
-{
-    public bool Enabled = enabled;
-    public ActionTimelineReplacement Replacement { get; } = replacement;
-}
-
-public class ActionTimelineReplacement(
-    ushort animationStart,
-    ushort animationEnd,
-    ushort actionTimelineHit,
-    ushort castVfx)
-{
-    public ushort AnimationStart = animationStart;
-    public ushort AnimationEnd = animationEnd;
-    public ushort ActionTimelineHit = actionTimelineHit;
-    public ushort CastVfx = castVfx;
-    public unsafe void WriteToPointer(ActionData* pointer)
-    {
-        pointer->CastVfx = CastVfx;
-        pointer->AnimationStart = AnimationStart;
-        pointer->AnimationEnd = AnimationEnd;
-        pointer->ActionTimelineHit = ActionTimelineHit;
     }
 }

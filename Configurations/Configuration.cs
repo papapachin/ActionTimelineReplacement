@@ -4,7 +4,6 @@ using Dalamud.Configuration;
 
 namespace ActionTimelineReplacement.Configurations;
 
-
 [Serializable]
 public class Configuration: IPluginConfiguration
 {

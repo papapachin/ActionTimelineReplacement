@@ -35,6 +35,10 @@ public static unsafe class Methods
 
         Service.Log.Info("Set the Action[{ActionID}] with Start[{Start}] End[{End}] Hit[{Hit}] Vfc[{Vfx}]",
             actionId, replacement.AnimationStart, replacement.AnimationEnd, replacement.ActionTimelineHit, replacement.CastVfx);
-        replacement.WriteToPointer(data);
+        
+        data->CastVfx = replacement.CastVfx;
+        data->AnimationStart = replacement.AnimationStart;
+        data->AnimationEnd = replacement.AnimationEnd;
+        data->ActionTimelineHit = replacement.ActionTimelineHit;
     }
 }
