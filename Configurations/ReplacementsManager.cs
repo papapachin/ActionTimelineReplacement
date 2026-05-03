@@ -50,7 +50,7 @@ public static class ReplacementsManager
         if (!exists)
         {
             var act = Service.DataManager.GetExcelSheet<Action>()?.GetRow(actionId);
-            replacement = new Configurations.ActionTimelineReplacement(
+            replacement = new ActionTimelineReplacement(
                 (ushort)(act?.AnimationStart.RowId ?? 0),
                 (ushort)(act?.AnimationEnd.RowId ?? 0),
                 (ushort)(act?.ActionTimelineHit.RowId ?? 0),

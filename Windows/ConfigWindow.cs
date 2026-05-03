@@ -118,7 +118,7 @@ public sealed class ConfigWindow : Window
                         _dialogManager.SaveFileDialog("Save", ".json", set.Name, ".json", (b, file) =>
                         {
                             if (!b) return;
-                            set.Save(file);
+                            set.Export(file);
                         });
                     }
 
@@ -127,7 +127,7 @@ public sealed class ConfigWindow : Window
                         if (_activeSet == set) _activeSet = null;
                         Service.Config.ActionTimelineReplacements.Remove(set);
                         Service.Config.Save();
-                        Methods.SetupActions(set.Replacements.Keys);
+                        Methods.SetupActions(set.Replacements.Keys, true);
                         ImGui.CloseCurrentPopup();
                     }
                 }
@@ -145,7 +145,8 @@ public sealed class ConfigWindow : Window
             ImGui.PushItemWidth(width);
             if (ImGui.Button("Create", buttonSize))
             {
-                Service.Config.ActionTimelineReplacements.Add(new ActionTimelineReplacementSet("New Item", [], true, 0));
+                Service.Config.ActionTimelineReplacements.Add(
+                    new ActionTimelineReplacementSet("New Item", [], true, 0));
                 Service.Config.Save();
             }
 
@@ -157,7 +158,7 @@ public sealed class ConfigWindow : Window
                     if (!b) return;
                     foreach (var file in files)
                     {
-                        if (ActionTimelineReplacementSet.Load(file) is not { } set) continue;
+                        if (ActionTimelineReplacementSet.Import(file) is not { } set) continue;
                         Service.Config.ActionTimelineReplacements.Add(set);
                         Methods.SetupActions(set.Replacements.Keys);
                     }
@@ -165,6 +166,7 @@ public sealed class ConfigWindow : Window
                     Service.Config.Save();
                 }, 10, ".");
             }
+
             ImGui.PopItemWidth();
         }
     }
@@ -192,7 +194,7 @@ public sealed class ConfigWindow : Window
 
         if (ImGui.Checkbox("Enable", ref _activeSet.Enabled))
         {
-            Methods.SetupActions(_activeSet.Replacements.Keys);
+            Methods.SetupActions(_activeSet.Replacements.Keys, !_activeSet.Enabled);
             Service.Config.Save();
         }
 
@@ -206,37 +208,37 @@ public sealed class ConfigWindow : Window
 
         ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 10 * Scale);
 
-            using (ImRaii.PushFont(GetFont(18)))
+        using (ImRaii.PushFont(GetFont(18)))
+        {
+            ImGui.Text("Skill");
+
+            if (Service.Config.AdvancedMode)
             {
-                ImGui.Text("Skill");
-
-                if (Service.Config.AdvancedMode)
+                if (_itemWidth == 0)
                 {
-                    if (_itemWidth == 0)
-                    {
-                        ImGui.SameLine();
-                        ImGui.Text(" Cast Vfx Start timeline End timeline Hit timeline");
-                    }
-                    else
-                    {
-                        ImGui.SameLine();
-                        ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 4 / 4);
-                        ImGui.Text("Cast Vfx");
+                    ImGui.SameLine();
+                    ImGui.Text(" Cast Vfx Start timeline End timeline Hit timeline");
+                }
+                else
+                {
+                    ImGui.SameLine();
+                    ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 4 / 4);
+                    ImGui.Text("Cast Vfx");
 
-                        ImGui.SameLine();
-                        ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 3 / 4);
-                        ImGui.Text("Start timeline");
+                    ImGui.SameLine();
+                    ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 3 / 4);
+                    ImGui.Text("Start timeline");
 
-                        ImGui.SameLine();
-                        ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 2 / 4);
-                        ImGui.Text("End timeline");
+                    ImGui.SameLine();
+                    ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 2 / 4);
+                    ImGui.Text("End timeline");
 
-                        ImGui.SameLine();
-                        ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 1 / 4);
-                        ImGui.Text("Hit timeline");
-                    }
+                    ImGui.SameLine();
+                    ImGui.SetCursorPosX(ImGui.GetWindowWidth() - _itemWidth * 1 / 4);
+                    ImGui.Text("Hit timeline");
                 }
             }
+        }
 
         using (var subList = ImRaii.Child("SubList", -Vector2.One, false))
         {
@@ -265,8 +267,9 @@ public sealed class ConfigWindow : Window
                     if (_itemWidth != 0 && Service.Config.AdvancedMode)
                     {
                         var widthRest = ImGui.GetWindowWidth() - _itemWidth - ImGui.GetCursorPosX() - 5 * Scale;
-                        ImGui.PushTextWrapPos(Math.Max(widthRest, 60 * Scale)+ ImGui.GetCursorPosX());
+                        ImGui.PushTextWrapPos(Math.Max(widthRest, 60 * Scale) + ImGui.GetCursorPosX());
                     }
+
                     ImGui.TextWrapped(ReplacementsManager.GetName(key));
                     if (_itemWidth != 0 && Service.Config.AdvancedMode)
                     {
@@ -408,7 +411,7 @@ public sealed class ConfigWindow : Window
     {
         if (ImGui.Checkbox("Enable", ref Service.Config.EnableReplacement))
         {
-            Methods.SetupActions(ReplacementsManager.AllActionIds);
+            Methods.SetupActions(ReplacementsManager.AllActionIds, !Service.Config.EnableReplacement);
             Service.Config.Save();
         }
 
