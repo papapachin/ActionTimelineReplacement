@@ -1,5 +1,4 @@
-using ActionTimelineReplacement.Configurations;
-using Dalamud.Game;
+using ActionTimelineReplacement.Models;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
@@ -8,7 +7,7 @@ namespace ActionTimelineReplacement;
 
 internal class Service
 {
-    internal static Configuration Config { get; set; } = null!;
+    internal static MainModel Model { get; set; } = null!;
 
     [PluginService] internal static IDalamudPluginInterface PluginInterface { get; set; } = null!;
     [PluginService] internal static ISigScanner Scanner { get; set; } = null!;
