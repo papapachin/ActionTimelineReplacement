@@ -33,7 +33,7 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
         Priority = new IntModel(priority, "Priority");
     }
 
-    internal ActionTimelineReplacementModel CreateChild(uint actionId, bool enabled,
+    internal void CreateChild(uint actionId, bool enabled,
         ushort animationStart, ushort animationEnd, ushort actionTimelineHit, ushort castVfx)
     {
         var child = new ActionTimelineReplacementModel(
@@ -41,35 +41,60 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
             animationStart, animationEnd, actionTimelineHit, castVfx,
             Priority, _advancedMode, [_enableReplacement, Enabled]);
         Replacements.Add(child);
-        return child;
     }
 
     public void Draw()
     {
         Name.Draw();
         Enabled.Draw();
+        ImGui.SameLine();
         Priority.Draw();
+        ImGui.SameLine();
+        DrawSearch();
 
-        using (var subList = ImRaii.Child("SubList", -Vector2.One, false))
+        var advancedModeValue = _advancedMode.Value;
+
+        using (ImRaii.Table("Tableb", advancedModeValue ? 7 : 3,
+                   ImGuiTableFlags.SizingFixedSame | ImGuiTableFlags.Resizable))
         {
-            if (subList)
+            ImGui.TableSetupColumn("Edit");
+            ImGui.TableSetupColumn("Icon");
+            ImGui.TableSetupColumn("Name");
+            if (advancedModeValue)
             {
-                var removedItems = Replacements.Where(i => i.Draw()).ToList();
+                ImGui.TableSetupColumn("Animation Start");
+                ImGui.TableSetupColumn("Animation End");
+                ImGui.TableSetupColumn("Action Timeline Hit");
+                ImGui.TableSetupColumn("Cast VFX");
+            }
 
-                if (removedItems.Count > 0)
+            ImGui.TableHeadersRow();
+
+            var removedItems = new List<ActionTimelineReplacementModel>();
+            foreach (var actionTimelineReplacementModel in Replacements)
+            {
+                ImGui.TableNextRow();
+                ImGui.TableNextColumn();
+                if (ImGui.Button(" - "))
                 {
-                    foreach (var actionTimelineReplacementModel in removedItems)
-                    {
-                        actionTimelineReplacementModel.Dispose();
-                        Replacements.Remove(actionTimelineReplacementModel);
-                    }
-
-                    Service.Model.Save();
+                    removedItems.Add(actionTimelineReplacementModel);
                 }
+
+                ImGui.SameLine();
+                actionTimelineReplacementModel.Draw();
+            }
+
+            if (removedItems.Count > 0)
+            {
+                foreach (var actionTimelineReplacementModel in removedItems)
+                {
+                    actionTimelineReplacementModel.Dispose();
+                    Replacements.Remove(actionTimelineReplacementModel);
+                }
+
+                Service.Model.Save();
             }
         }
-
-        DrawSearch();
     }
 
     private string _searchAction = string.Empty;
@@ -121,10 +146,10 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
             foreach (var (id, j) in dic)
             {
                 set.CreateChild(id, true,
-                    (ushort)((int?)j["AnimationStart"]    ?? 0),
-                    (ushort)((int?)j["AnimationEnd"]      ?? 0),
+                    (ushort)((int?)j["AnimationStart"] ?? 0),
+                    (ushort)((int?)j["AnimationEnd"] ?? 0),
                     (ushort)((int?)j["ActionTimelineHit"] ?? 0),
-                    (ushort)((int?)j["CastVfx"]           ?? 0));
+                    (ushort)((int?)j["CastVfx"] ?? 0));
             }
 
             return set;
@@ -143,10 +168,10 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
                 r => r.ActionId,
                 r => new
                 {
-                    AnimationStart    = r.AnimationStart.Value,
-                    AnimationEnd      = r.AnimationEnd.Value,
+                    AnimationStart = r.AnimationStart.Value,
+                    AnimationEnd = r.AnimationEnd.Value,
                     ActionTimelineHit = r.ActionTimelineHit.Value,
-                    CastVfx           = r.CastVfx.Value,
+                    CastVfx = r.CastVfx.Value,
                 });
             File.WriteAllText(jsonFile, JsonConvert.SerializeObject(dic));
             return true;

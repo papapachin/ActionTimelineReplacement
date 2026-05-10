@@ -1,7 +1,9 @@
 using System;
+using System.Numerics;
 using ActionTimelineReplacement.Helpers;
 using ActionTimelineReplacement.Hookers;
 using Dalamud.Bindings.ImGui;
+using Dalamud.Interface.Textures;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Utility.Raii;
 
@@ -32,17 +34,19 @@ public sealed class ActionTimelineReplacementModel : IDisposable
     {
         _actionId = actionId;
         _advancedMode = advancedMode;
-        Enabled = new BoolModel(enabled, nameof(Enabled));
+        Enabled = new BoolModel(enabled, "");
         BoolModel[] enables = [..enable, Enabled];
 
-        AnimationStart    = CreateOne(animationStart,    ActionOffsetDefinition.AnimationStart);
-        AnimationEnd      = CreateOne(animationEnd,      ActionOffsetDefinition.AnimationEnd);
-        ActionTimelineHit = CreateOne(actionTimelineHit, ActionOffsetDefinition.ActionTimelineHit);
-        CastVfx           = CreateOne(castVfx,           ActionOffsetDefinition.CastVfx);
+        AnimationStart = CreateOne(animationStart, ActionOffsetDefinition.AnimationStart, "Animation Start");
+        AnimationEnd = CreateOne(animationEnd, ActionOffsetDefinition.AnimationEnd, "Animation End");
+        ActionTimelineHit =
+            CreateOne(actionTimelineHit, ActionOffsetDefinition.ActionTimelineHit, "Action Timeline Hit");
+        CastVfx = CreateOne(castVfx, ActionOffsetDefinition.CastVfx, "Cast VFX");
 
-        ActionOffsetModel CreateOne(ushort value, ActionOffsetDefinition definition)
+        ActionOffsetModel CreateOne(ushort value, ActionOffsetDefinition definition, string name)
         {
             return new ActionOffsetModel(
+                name,
                 value,
                 ActionOffsetAction.GetOrCreate(definition, actionId),
                 priority, enables);
@@ -50,37 +54,27 @@ public sealed class ActionTimelineReplacementModel : IDisposable
     }
 
     /// <returns>True if the user clicked the remove button.</returns>
-    public bool Draw()
+    public void Draw()
     {
-        var result = false;
         Enabled.Draw();
-        ImGui.SameLine();
-        if (ImGui.Button(" - "))
-        {
-            result = true;
-        }
 
-        ImGui.SameLine();
-        ImGui.Text($"#{_actionId:D5}");
+        ImGui.TableNextColumn();
+        var action = Service.DataManager.GetExcelSheet<Lumina.Excel.Sheets.Action>().GetRow(_actionId);
+        using var texture = Service.Texture.GetFromGameIcon(new GameIconLookup(action.Icon)).GetWrapOrEmpty();
+        ImGui.Image(texture.Handle, Vector2.One * 36 * ImGuiHelpers.GlobalScale);
+        ImGui.TableNextColumn();
+        ImGui.Text($"#{_actionId:D5} {action.Name}");
 
-        ImGui.SameLine();
-        var advancedMode = _advancedMode.Value;
-        using (ImRaii.TextWrapPos((60 * ImGuiHelpers.GlobalScale) + ImGui.GetCursorPosX(), advancedMode))
-        {
-            ImGui.TextWrapped(ActionLookup.GetName(_actionId));
-        }
-        if (!advancedMode) return result;
+        if (!_advancedMode.Value) return;
 
-        ImGui.SameLine();
+        ImGui.TableNextColumn();
         AnimationStart.Draw();
-        ImGui.SameLine();
+        ImGui.TableNextColumn();
         AnimationEnd.Draw();
-        ImGui.SameLine();
+        ImGui.TableNextColumn();
         ActionTimelineHit.Draw();
-        ImGui.SameLine();
+        ImGui.TableNextColumn();
         CastVfx.Draw();
-
-        return result;
     }
 
     public void Dispose()

@@ -40,8 +40,8 @@ public sealed class MainModel : IDrawItem, IDisposable, IPluginConfiguration
 
     internal void Save()
     {
-        Service.Log.Info("Configuration saved.");
         Service.PluginInterface.SavePluginConfig(this);
+        Service.Log.Debug("Configuration saved.");
     }
 
     public void Draw()

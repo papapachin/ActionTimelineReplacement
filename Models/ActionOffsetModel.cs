@@ -12,19 +12,23 @@ public sealed class ActionOffsetModel :
     BaseModel<ushort>,
     IDisposable
 {
+    private readonly string _name;
     private readonly ActionOffsetAction _action;
     private readonly IntModel _priority;
     private readonly BoolModel[] _enable;
 
-    public ActionOffsetModel(ushort data,
+    public ActionOffsetModel(
+        string name,
+        ushort data,
         ActionOffsetAction action,
         IntModel priority,
         BoolModel[] enable) : base(data)
     {
+        _name = name;
         _action = action;
         _priority = priority;
         _enable = enable;
-        
+
         priority.OnChanged -= action.UpdatePriorityOrEnable;
         priority.OnChanged += action.UpdatePriorityOrEnable;
         foreach (var boolModel in _enable)
@@ -39,12 +43,12 @@ public sealed class ActionOffsetModel :
 
     public int Priority => _priority.Value;
     public bool Enable => _enable.All(i => i.Value);
-    
+
     public override void Changed()
     {
         _action.UpdateValue(this);
     }
-    
+
     protected override bool DrawImplementation()
     {
         var result = false;
@@ -53,7 +57,12 @@ public sealed class ActionOffsetModel :
         {
             result = true;
         }
-        
+
+        if (ImGui.IsItemHovered())
+        {
+            ImGui.SetTooltip(_name);
+        }
+
         ImGui.SameLine();
         using (ImRaii.PushFont(UiBuilder.IconFont))
         {

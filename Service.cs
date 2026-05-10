@@ -12,10 +12,7 @@ internal class Service
     [PluginService] internal static IDalamudPluginInterface PluginInterface { get; set; } = null!;
     [PluginService] internal static ISigScanner Scanner { get; set; } = null!;
     [PluginService] internal static ICommandManager CommandManager { get; set; } = null!;
-    [PluginService] internal static IClientState ClientState { get; set; } = null!;
-    [PluginService] internal static IChatGui ChatGui { get; set; } = null!;
+    [PluginService] internal static ITextureProvider Texture { get; set; } = null!;
     [PluginService] internal static IDataManager DataManager { get; set; } = null!;
-    [PluginService] internal static IGameInteropProvider GameInteropProvider { get; set; } = null!;
-    [PluginService] internal static IFramework Framework { get; set; } = null!;
     [PluginService] public static IPluginLog Log { get; set; } = null!;
 }

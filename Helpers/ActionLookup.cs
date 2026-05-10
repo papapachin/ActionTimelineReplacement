@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Dalamud.Bindings.ImGui;
 using Lumina.Excel.Sheets;
 
 namespace ActionTimelineReplacement.Helpers;
@@ -12,9 +13,6 @@ internal static class ActionLookup
         ??= Service.DataManager.GetExcelSheet<Action>()
             .Where(i => !string.IsNullOrEmpty(i.Name.ToString()))
             .ToDictionary(i => i.RowId, i => i.Name.ToString());
-
-    public static string GetName(uint id) =>
-        Names.TryGetValue(id, out var n) ? n : "Unknown";
 
     public static (ushort start, ushort end, ushort hit, ushort cast) GetOriginal(uint id)
     {
