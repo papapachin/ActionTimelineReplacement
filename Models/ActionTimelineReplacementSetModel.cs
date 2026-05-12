@@ -75,7 +75,7 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
             {
                 ImGui.TableNextRow();
                 ImGui.TableNextColumn();
-                if (ImGui.Button(" - "))
+                if (ImGui.Button(" - ##" + actionTimelineReplacementModel.GetHashCode()))
                 {
                     removedItems.Add(actionTimelineReplacementModel);
                 }
@@ -102,7 +102,7 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
 
     private void DrawSearch()
     {
-        if (ImGui.Button(" + "))
+        if (ImGui.Button("Add new skill"))
         {
             ImGui.OpenPopup(SearchActionsPopup);
         }
