@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ActionTimelineReplacement.Interfaces;
 using Dalamud.Interface.Utility.Raii;
 

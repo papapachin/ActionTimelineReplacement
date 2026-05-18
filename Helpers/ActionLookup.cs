@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Dalamud.Bindings.ImGui;
 using Lumina.Excel.Sheets;
 
 namespace ActionTimelineReplacement.Helpers;

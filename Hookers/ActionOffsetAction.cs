@@ -15,14 +15,14 @@ public sealed class ActionOffsetAction
             Service.Scanner.ScanText("E8 ?? ?? ?? ?? F6 40 3E 10"));
 
     private ushort? _defaultValue;
-    private readonly ActionOffsetDefinition _definition;
     private readonly uint _id;
     private readonly List<ActionOffsetModel> _models = [];
     private ActionOffsetModel? _activeModel;
+    public ActionOffsetDefinition Definition { get; }
 
     private ActionOffsetAction(ActionOffsetDefinition definition, uint id)
     {
-        _definition = definition;
+        Definition = definition;
         _id = id;
     }
 
@@ -49,7 +49,7 @@ public sealed class ActionOffsetAction
     {
         get
         {
-            var newValue = (ushort*)(GetActionDataHook(_id) + _definition.Offset);
+            var newValue = (ushort*)(GetActionDataHook(_id) + Definition.Offset);
             if ((IntPtr)field == IntPtr.Zero)
             {
                 field = newValue;
@@ -133,7 +133,7 @@ public sealed class ActionOffsetAction
 
         Service.Log.Debug(
             "Set the Field[{FieldName}] with Value[{Value}] in the Action[{ActionID}].",
-            _definition.Name,
+            Definition.Name,
             value,
             _id.ToString());
 

@@ -12,19 +12,15 @@ public sealed class ActionOffsetModel :
     BaseModel<ushort>,
     IDisposable
 {
-    private readonly string _name;
     private readonly ActionOffsetAction _action;
     private readonly IntModel _priority;
     private readonly BoolModel[] _enable;
 
-    public ActionOffsetModel(
-        string name,
-        ushort data,
+    public ActionOffsetModel(ushort data,
         ActionOffsetAction action,
         IntModel priority,
         BoolModel[] enable) : base(data)
     {
-        _name = name;
         _action = action;
         _priority = priority;
         _enable = enable;
@@ -60,7 +56,7 @@ public sealed class ActionOffsetModel :
 
         if (ImGui.IsItemHovered())
         {
-            ImGui.SetTooltip(_name);
+            ImGui.SetTooltip(_action.Definition.LookUp(Data));
         }
 
         ImGui.SameLine();
