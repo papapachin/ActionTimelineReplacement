@@ -31,10 +31,10 @@ public sealed record ActionOffsetDefinition
     });
     public static ActionOffsetDefinition AnimationEnd { get; } = new("End timeline", 32, (dataManager, key) =>
     {
-        return "chara/action/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key + ".tmb";;
+        return "chara/action/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key + ".tmb";
     });
     public static ActionOffsetDefinition ActionTimelineHit { get; } = new("Hit timeline", 12, (dataManager, key) =>
     {
-        return "chara/action/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key + ".tmb";;
+        return "chara/action/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key + ".tmb";
     });
 }

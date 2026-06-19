@@ -56,7 +56,13 @@ public sealed class ActionOffsetModel :
 
         if (ImGui.IsItemHovered())
         {
-            ImGui.SetTooltip(_action.Definition.LookUp(Data));
+            var text = _action.Definition.LookUp(Data);
+            ImGui.SetTooltip(text);
+            
+            if (ImGui.IsMouseClicked(ImGuiMouseButton.Right))
+            {
+                ImGui.SetClipboardText(text);
+            }
         }
 
         ImGui.SameLine();
