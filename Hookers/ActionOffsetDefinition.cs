@@ -23,18 +23,18 @@ public sealed record ActionOffsetDefinition
     
     public static ActionOffsetDefinition CastVfx { get; } = new("Cast Vfx", 10, (dataManager, key) =>
     {
-        return dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionCastVFX>()[key].VFX.Value.Location;
+        return "vfx/common/eff/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionCastVFX>()[key].VFX.Value.Location + ".avfx";
     });
     public static ActionOffsetDefinition AnimationStart { get; } = new("Start timeline", 36, (dataManager, key) =>
     {
-        return dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionCastTimeline>()[key].Name.Value.Key;
+        return "chara/action/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionCastTimeline>()[key].Name.Value.Key + ".tmb";
     });
     public static ActionOffsetDefinition AnimationEnd { get; } = new("End timeline", 32, (dataManager, key) =>
     {
-        return dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key;
+        return "chara/action/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key + ".tmb";;
     });
     public static ActionOffsetDefinition ActionTimelineHit { get; } = new("Hit timeline", 12, (dataManager, key) =>
     {
-        return dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key;
+        return "chara/action/" + dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionTimeline>()[key].Key + ".tmb";;
     });
 }
