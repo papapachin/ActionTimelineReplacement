@@ -27,7 +27,7 @@ public sealed record ActionOffsetDefinition
     });
     public static ActionOffsetDefinition AnimationStart { get; } = new("Start timeline", 36, (dataManager, key) =>
     {
-        return dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionCastTimeline>()[key].VFX.Value.Location;
+        return dataManager.GetExcelSheet<Lumina.Excel.Sheets.ActionCastTimeline>()[key].Name.Value.Key;
     });
     public static ActionOffsetDefinition AnimationEnd { get; } = new("End timeline", 32, (dataManager, key) =>
     {
