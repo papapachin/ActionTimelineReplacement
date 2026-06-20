@@ -1,0 +1,257 @@
+{
+  "$type": "ActionTimelineReplacement.Configurations.Configuration, ActionTimelineReplacement",
+  "EnableReplacement": true,
+  "AdvancedMode": true,
+  "Version": 0,
+  "ActionTimelineReplacements": [
+    {
+      "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementSet, ActionTimelineReplacement",
+      "Name": "Sin-Vergil[7.2+]",
+      "Enabled": true,
+      "Priority": 0,
+      "Replacements": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.UInt32, System.Private.CoreLib],[ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement]], System.Private.CoreLib",
+        "7487": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 11,
+            "AnimationEnd": 5118,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 48
+          }
+        },
+        "7488": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 10,
+            "AnimationEnd": 11590,
+            "ActionTimelineHit": 5274,
+            "CastVfx": 40
+          }
+        },
+        "7489": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 8,
+            "AnimationEnd": 5120,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 40
+          }
+        },
+        "16485": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 5119,
+            "ActionTimelineHit": 5125,
+            "CastVfx": 40
+          }
+        },
+        "25780": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 8200,
+            "ActionTimelineHit": 8223,
+            "CastVfx": 0
+          }
+        },
+        "25781": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 16,
+            "AnimationEnd": 8225,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 249
+          }
+        },
+        "29530": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 16,
+            "AnimationEnd": 12220,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 249
+          }
+        },
+        "36965": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 13,
+            "AnimationEnd": 11838,
+            "ActionTimelineHit": 5133,
+            "CastVfx": 40
+          }
+        },
+        "36966": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 14,
+            "AnimationEnd": 11837,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 577
+          }
+        },
+        "41454": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 14,
+            "AnimationEnd": 12252,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 577
+          }
+        },
+        "36967": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 5131,
+            "ActionTimelineHit": 5125,
+            "CastVfx": 0
+          }
+        }
+      }
+    },
+    {
+      "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementSet, ActionTimelineReplacement",
+      "Name": "[DT]Esteembase",
+      "Enabled": true,
+      "Priority": 0,
+      "Replacements": {
+        "$type": "System.Collections.Generic.Dictionary`2[[System.UInt32, System.Private.CoreLib],[ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement]], System.Private.CoreLib",
+        "17904": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3817,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 0
+          }
+        },
+        "17905": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3814,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 0
+          }
+        },
+        "17906": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3791,
+            "ActionTimelineHit": 4037,
+            "CastVfx": 0
+          }
+        },
+        "17907": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3808,
+            "ActionTimelineHit": 4037,
+            "CastVfx": 0
+          }
+        },
+        "17908": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3791,
+            "ActionTimelineHit": 4037,
+            "CastVfx": 0
+          }
+        },
+        "17909": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3792,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 0
+          }
+        },
+        "17915": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3795,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 0
+          }
+        },
+        "25881": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3808,
+            "ActionTimelineHit": 4037,
+            "CastVfx": 0
+          }
+        },
+        "36933": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3802,
+            "ActionTimelineHit": 4037,
+            "CastVfx": 0
+          }
+        },
+        "38512": {
+          "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacementConfig, ActionTimelineReplacement",
+          "Enabled": true,
+          "Replacement": {
+            "$type": "ActionTimelineReplacement.Configurations.ActionTimelineReplacement, ActionTimelineReplacement",
+            "AnimationStart": 0,
+            "AnimationEnd": 3814,
+            "ActionTimelineHit": 1875,
+            "CastVfx": 0
+          }
+        }
+      }
+    }
+  ]
+}

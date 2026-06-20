@@ -1,36 +1,29 @@
-using Dalamud.Plugin;
 using System;
 using System.Collections.Immutable;
-using ActionTimelineReplacement.Configurations;
-using ActionTimelineReplacement.Hookers;
+using ActionTimelineReplacement.Models;
 using ActionTimelineReplacement.Windows;
+using Dalamud.Plugin;
 
 namespace ActionTimelineReplacement;
 
 public sealed class Plugin : IDalamudPlugin
 {
     private readonly ImmutableArray<IDisposable> _disposables;
+
     public Plugin(IDalamudPluginInterface pluginInterface)
     {
-        //初始化服务，主要用于ID
         pluginInterface.Create<Service>();
 
-        //用于读取Config
-        Service.Config = pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+        Service.Model = pluginInterface.GetPluginConfig() as MainModel ?? new MainModel();
 
-        //添加各种小模组
-        _disposables = [new WindowManager()];
-
-        Methods.SetupActions(ReplacementsManager.AllActionIds);
+        _disposables = [new WindowManager(), Service.Model];
     }
 
     public void Dispose()
     {
-        Methods.SetupActions(ReplacementsManager.AllActionIds, true);
-        Service.Config.Save();
-        foreach (var disposable in _disposables)
+        for (var i = _disposables.Length - 1; i >= 0; i--)
         {
-            disposable.Dispose();
+            _disposables[i].Dispose();
         }
     }
 }

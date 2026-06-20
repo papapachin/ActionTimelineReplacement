@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors></Authors>
-    <Company></Company>
     <Version>1.0.0.1</Version>
     <Description>A sample plugin.</Description>
-    <Copyright></Copyright>
     <PackageProjectUrl>https://github.com/papapachin/ActionTimelineReplacement</PackageProjectUrl>
   </PropertyGroup>
 
@@ -26,7 +23,8 @@
   </PropertyGroup>
   
    <PropertyGroup Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'">
-    <DalamudLibPath>$(DALAMUD_HOME)/</DalamudLibPath>
+     <DalamudLibPath>$(DALAMUD_HOME)/</DalamudLibPath>
+     <DalamudLibPath>/home/ted-jin/.xlcore/dalamud/Hooks/dev/</DalamudLibPath>
   </PropertyGroup>
 
   <ItemGroup>
