@@ -14,7 +14,7 @@ public sealed class ActionOffsetAction
         Marshal.GetDelegateForFunctionPointer<GetActionDataDelegate>(
             Service.Scanner.ScanText("E8 ?? ?? ?? ?? F6 40 3E 10"));
 
-    private ushort? _defaultValue;
+    private short? _defaultValue;
     private readonly uint _id;
     private readonly List<ActionOffsetModel> _models = [];
     private ActionOffsetModel? _activeModel;
@@ -45,11 +45,11 @@ public sealed class ActionOffsetAction
         return result;
     }
 
-    private unsafe ushort* ValuePointer
+    private unsafe short* ValuePointer
     {
         get
         {
-            var newValue = (ushort*)(GetActionDataHook(_id) + Definition.Offset);
+            var newValue = (short*)(GetActionDataHook(_id) + Definition.Offset);
             if ((IntPtr)field == IntPtr.Zero)
             {
                 field = newValue;
@@ -57,7 +57,7 @@ public sealed class ActionOffsetAction
             else if (newValue != field)
             {
                 Service.Log.Error(
-                    "The Ushort Pointer was changed, so it is impossible to safe the pointer as a field!");
+                    "The Short Pointer was changed, so it is impossible to safe the pointer as a field!");
                 field = newValue;
             }
 
@@ -65,7 +65,7 @@ public sealed class ActionOffsetAction
         }
     }
 
-    public unsafe ushort DefaultValue
+    public unsafe short DefaultValue
     {
         get
         {
@@ -124,7 +124,7 @@ public sealed class ActionOffsetAction
             .MaxBy(m => m.Priority);
     }
 
-    private unsafe void SetValue(ushort value)
+    private unsafe void SetValue(short value)
     {
         if (_defaultValue is null)
         {

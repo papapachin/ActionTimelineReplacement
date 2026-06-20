@@ -34,7 +34,7 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
     }
 
     internal void CreateChild(uint actionId, bool enabled,
-        ushort animationStart, ushort animationEnd, ushort actionTimelineHit, ushort castVfx)
+        short animationStart, short animationEnd, short actionTimelineHit, short castVfx)
     {
         var child = new ActionTimelineReplacementModel(
             actionId, enabled,
@@ -146,10 +146,10 @@ public sealed class ActionTimelineReplacementSetModel : IDrawItem, IDisposable
             foreach (var (id, j) in dic)
             {
                 set.CreateChild(id, true,
-                    (ushort)((int?)j["AnimationStart"] ?? 0),
-                    (ushort)((int?)j["AnimationEnd"] ?? 0),
-                    (ushort)((int?)j["ActionTimelineHit"] ?? 0),
-                    (ushort)((int?)j["CastVfx"] ?? 0));
+                    (short)((int?)j["AnimationStart"] ?? 0),
+                    (short)((int?)j["AnimationEnd"] ?? 0),
+                    (short)((int?)j["ActionTimelineHit"] ?? 0),
+                    (short)((int?)j["CastVfx"] ?? 0));
             }
 
             return set;

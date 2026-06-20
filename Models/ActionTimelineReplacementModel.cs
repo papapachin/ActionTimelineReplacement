@@ -21,10 +21,10 @@ public sealed class ActionTimelineReplacementModel : IDisposable
     public ActionTimelineReplacementModel(
         uint actionId,
         bool enabled,
-        ushort animationStart,
-        ushort animationEnd,
-        ushort actionTimelineHit,
-        ushort castVfx,
+        short animationStart,
+        short animationEnd,
+        short actionTimelineHit,
+        short castVfx,
         IntModel priority,
         BoolModel advancedMode,
         Span<BoolModel> enable)
@@ -40,7 +40,7 @@ public sealed class ActionTimelineReplacementModel : IDisposable
             CreateOne(actionTimelineHit, ActionOffsetDefinition.ActionTimelineHit);
         CastVfx = CreateOne(castVfx, ActionOffsetDefinition.CastVfx);
 
-        ActionOffsetModel CreateOne(ushort value, ActionOffsetDefinition definition)
+        ActionOffsetModel CreateOne(short value, ActionOffsetDefinition definition)
         {
             return new ActionOffsetModel(value,
                 ActionOffsetAction.GetOrCreate(definition, actionId),

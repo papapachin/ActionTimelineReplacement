@@ -135,9 +135,9 @@ internal sealed class MainModelJsonConverter : JsonConverter<MainModel>
         var r = jo["Replacement"] as JObject ?? new JObject();
         set.CreateChild(actionId,
             (bool?)jo["Enabled"] ?? true,
-            (ushort)((int?)r["AnimationStart"]    ?? 0),
-            (ushort)((int?)r["AnimationEnd"]      ?? 0),
-            (ushort)((int?)r["ActionTimelineHit"] ?? 0),
-            (ushort)((int?)r["CastVfx"]           ?? 0));
+            (short)((int?)r["AnimationStart"]    ?? 0),
+            (short)((int?)r["AnimationEnd"]      ?? 0),
+            (short)((int?)r["ActionTimelineHit"] ?? 0),
+            (short)((int?)r["CastVfx"]           ?? 0));
     }
 }

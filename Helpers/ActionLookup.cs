@@ -13,13 +13,13 @@ internal static class ActionLookup
             .Where(i => !string.IsNullOrEmpty(i.Name.ToString()))
             .ToDictionary(i => i.RowId, i => i.Name.ToString());
 
-    public static (ushort start, ushort end, ushort hit, ushort cast) GetOriginal(uint id)
+    public static (short start, short end, short hit, short cast) GetOriginal(uint id)
     {
         var act = Service.DataManager.GetExcelSheet<Action>().GetRow(id);
         return (
-            (ushort)act.AnimationStart.RowId,
-            (ushort)act.AnimationEnd.RowId,
-            (ushort)act.ActionTimelineHit.RowId,
-            (ushort)act.VFX.RowId);
+            (short)act.AnimationStart.RowId,
+            (short)act.AnimationEnd.RowId,
+            (short)act.ActionTimelineHit.RowId,
+            (short)act.VFX.RowId);
     }
 }

@@ -9,14 +9,14 @@ using Dalamud.Interface.Utility.Raii;
 namespace ActionTimelineReplacement.Models;
 
 public sealed class ActionOffsetModel :
-    BaseModel<ushort>,
+    BaseModel<short>,
     IDisposable
 {
     private readonly ActionOffsetAction _action;
     private readonly IntModel _priority;
     private readonly BoolModel[] _enable;
 
-    public ActionOffsetModel(ushort data,
+    public ActionOffsetModel(short data,
         ActionOffsetAction action,
         IntModel priority,
         BoolModel[] enable) : base(data)
@@ -49,7 +49,7 @@ public sealed class ActionOffsetModel :
     {
         var result = false;
         ImGui.SetNextItemWidth(60 * ImGuiHelpers.GlobalScale);
-        if (ImGui.DragUShort(string.Empty, ref Data))
+        if (ImGui.DragShort(string.Empty, ref Data, vMax: _action.Definition.Max))
         {
             result = true;
         }
@@ -57,11 +57,15 @@ public sealed class ActionOffsetModel :
         if (ImGui.IsItemHovered())
         {
             var text = _action.Definition.LookUp(Data);
-            ImGui.SetTooltip(text);
-            
-            if (ImGui.IsMouseClicked(ImGuiMouseButton.Right))
+            ImGui.SetTooltip(text.IsEmpty ? "Null" : text);
+            if (!text.IsEmpty)
             {
-                ImGui.SetClipboardText(text);
+                ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
+                
+                if (ImGui.IsMouseClicked(ImGuiMouseButton.Right))
+                {
+                    ImGui.SetClipboardText(text);
+                }
             }
         }
 
